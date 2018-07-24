@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx-v16
+  name: nginx-green 
 spec:
   replicas: 4
   strategy:
@@ -14,36 +14,29 @@ spec:
     metadata:
       labels:
         app: nginx
-        version: v1.4
+        version: v2.2
     spec:
       terminationGracePeriodSeconds: 60
       containers:
       - name: nginx
-        image: mikiha/nginx-server:1.6
+        image: mikiha/nginx:2.2
         resources:
           requests:
             memory: "100M"
             cpu: "200m"
         livenessProbe:
           httpGet:
-            path: /
+            path: /version.html
             port: 80
           initialDelaySeconds: 30
           periodSeconds: 3
           timeoutSeconds: 3
         readinessProbe:
           httpGet:
-            path: /
+            path: /version.html
             port: 80
           initialDelaySeconds: 30
           periodSeconds: 3
           timeoutSeconds: 3
-        volumeMounts:
-        - mountPath: /var/log
-          name: logs
         ports:
         - containerPort: 80
-      volumes:
-      - name: logs
-        hostPath:
-          path: /LOGS/

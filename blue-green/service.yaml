@@ -7,5 +7,5 @@ spec:
   - port: 80
   selector:
     app: nginx
-    version: v1.6
+    version: v2.2
   type: NodePort
