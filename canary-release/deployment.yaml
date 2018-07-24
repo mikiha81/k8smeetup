@@ -14,36 +14,29 @@ spec:
     metadata:
       labels:
         app: nginx
-        version: v1.5
+        version: v2.1
     spec:
       terminationGracePeriodSeconds: 60
       containers:
       - name: nginx
-        image: mikiha/nginx-server:1.4
+        image: mikiha/nginx:2.1
         resources:
           requests:
             memory: "100M"
             cpu: "200m"
         livenessProbe:
           httpGet:
-            path: /
+            path: /version.html
             port: 80
           initialDelaySeconds: 30
           periodSeconds: 3
           timeoutSeconds: 3
         readinessProbe:
           httpGet:
-            path: /
+            path: /version.html
             port: 80
           initialDelaySeconds: 30
           periodSeconds: 3
           timeoutSeconds: 3
-        volumeMounts:
-        - mountPath: /var/log
-          name: logs
         ports:
         - containerPort: 80
-      volumes:
-      - name: logs
-        hostPath:
-          path: /LOGS/
