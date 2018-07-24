@@ -14,12 +14,12 @@ spec:
     metadata:
       labels:
         app: nginx
-        version: v2.2
+        version: v2.3
     spec:
       terminationGracePeriodSeconds: 60
       containers:
       - name: nginx
-        image: mikiha/nginx:2.2
+        image: mikiha/nginx:2.3
         resources:
           requests:
             memory: "100M"
