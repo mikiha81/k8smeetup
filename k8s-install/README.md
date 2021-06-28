@@ -38,5 +38,20 @@ kubectl get nodes -o wide
 
 
 
+** prometheus operator
+
+https://operatorhub.io/operator/prometheus
 
 
+
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.18.2/install.sh | bash -s v0.18.2
+kubectl create -f https://operatorhub.io/install/prometheus.yaml
+kubectl get csv -n operators
+
+
+---------------------
+git clone https://github.com/coreos/prometheus-operator.git
+git clone https://github.com/mateobur/prometheus-monitoring-guide.git
+
+
+kubectl create -f prometheus-operator/contrib/kube-prometheus/manifests/
